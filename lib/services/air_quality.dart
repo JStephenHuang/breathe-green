@@ -46,7 +46,7 @@ class AirQualityService {
 
   Future<AirQuality> fetchAirQuality(double lat, double lon) async {
     Uri uri = Uri.parse(
-        "http://api.openweathermap.org/data/2.5/air_pollution?lat=$lat&lon=$lon&appid=e7fe2013a03142464b22de87b2f02669");
+        "http://api.openweathermap.org/data/2.5/air_pollution?lat=$lat&lon=$lon&appid=${const String.fromEnvironment('API_BASE_URL')}");
     Response response = await get(uri);
     if (response.statusCode == 200) {
       return AirQuality.fromJson(jsonDecode(response.body));
